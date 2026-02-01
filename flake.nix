@@ -61,7 +61,7 @@
           name = "sccache-dev";
 
           buildInputs = with pkgs; [
-            rustup
+            # rustup
             openssl
             pkg-config
             gcc
