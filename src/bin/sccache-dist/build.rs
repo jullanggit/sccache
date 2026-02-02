@@ -227,8 +227,8 @@ impl OverlayBuilder {
                     let mut entries: Vec<_> = dir_map.iter().collect();
                     // In the pathological case, creation time for unpacked
                     // toolchains could be the opposite of the least recently
-                    // recently used, so we clear out half of the accumulated
-                    // toolchains to prevent repeated sort/delete cycles.
+                    // used, so we clear out half of the accumulated toolchains
+                    // to prevent repeated sort/delete cycles.
                     entries.sort_by(|a, b| (a.1).ctime.cmp(&(b.1).ctime));
                     entries.truncate(entries.len() / 2);
                     for (tc, _) in entries {
@@ -367,6 +367,7 @@ impl OverlayBuilder {
                         .arg("/")
                         .args(["--proc", "/proc"])
                         .args(["--dev", "/dev"])
+                        .args(["--tmpfs", "/tmp"])
                         .arg("--chdir")
                         .arg(cwd);
 
